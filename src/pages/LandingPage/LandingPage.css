@@ -1,0 +1,28 @@
+.square{
+  animation: rotated 4s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.tilt {
+  animation: tilted 4s infinite linear;
+}
+
+@keyframes tilted {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes rotated {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg) rotate(45deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg) rotate(45deg);
+  }
+}
