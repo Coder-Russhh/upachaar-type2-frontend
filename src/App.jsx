@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Cancel from "./components/cancel";
 import Notification from "./components/DoctorComp/Notification";
 import Footer from "./components/Footer";
 import HealthFeed from "./components/HealthFeed";
 import NotFound from "./components/NotFound";
 import Payment from "./components/Payment";
-import Success from "./components/success";
 import AccessRestrict from "./pages/DoctorPage/AccessRestrict";
 import ClinicInformation from "./pages/DoctorPage/ClinicInformation";
 import DoctorHealthFeed from "./pages/DoctorPage/DoctorHealthFeed";
@@ -59,8 +57,6 @@ function App() {
       <Routes>
         <Route path="/rough" element={<Rough />} />
         <Route path="/connectroom/:roomId" element={<ConnectRoom/>} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/cancel" element={<Cancel />} />
         <Route path="/load" element={<GetStarted/>} />
         <Route path="/" element={loading ? <Loading /> : <GetStarted />} />
 
