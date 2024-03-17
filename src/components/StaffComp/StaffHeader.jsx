@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { FiUser, FiMenu, FiX } from "react-icons/fi";
 import { IoNotifications } from "react-icons/io5";
 import axios from "axios";
+import { backendURL } from "../../config/dev";
+
 
 const StaffHeader = () => {
   const { doctorId, staffId } = useParams();
@@ -21,7 +23,7 @@ const StaffHeader = () => {
     const fetchStaffData = async () => {
       try {
         const response = await axios.get(
-          `/api/doctors/${doctorId}/staff/${staffId}`
+          `${backendURL}/doctors/${doctorId}/staff/${staffId}`
         );
         setStaffName(response.data.data.staffMember.username);
       } catch (error) {

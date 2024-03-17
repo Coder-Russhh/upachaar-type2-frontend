@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { backendURL } from "../../config/dev";
 
 const GeneratingSlots = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const GeneratingSlots = () => {
 
     try {
       const response = await axios.post(
-        `/api/live-appointments/generate-slots/${doctorId}`
+        `${backendURL}/live-appointments/generate-slots/${doctorId}`
       );
       console.log(response.data);
       setLoading(false);

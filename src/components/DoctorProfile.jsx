@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { backendURL } from "../config/dev";
 
 const DoctorProfile = () => {
   const { doctorId } = useParams();
@@ -9,7 +10,7 @@ const DoctorProfile = () => {
     // Fetch doctor data using the doctorId
     const fetchDoctorData = async () => {
       try {
-        const response = await fetch(`/api/doctors/${doctorId}`);
+        const response = await fetch(`${backendURL}/doctors/${doctorId}`);
         const data = await response.json();
 
         if (data.success) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { backendURL } from '../../config/dev';
 // import HomeDoctor1 from "../../assets/HomeImg/HomeDoctor1.jpg";
 
 const StaffId = () => {
@@ -15,7 +16,7 @@ const StaffId = () => {
     setError(null);
 
     try {
-      const response = await axios.post('/api/doctors/staffId', { staffId });
+      const response = await axios.post(`${backendURL}/doctors/staffId`, { staffId });
       const data = response.data;
       const id = data.data._id;
       if (data.success === true) {

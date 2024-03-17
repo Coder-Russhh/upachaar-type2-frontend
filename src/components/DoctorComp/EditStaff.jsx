@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { backendURL } from "../../config/dev";
+
 
 const EditStaff = () => {
   const [staffMembers, setStaffMembers] = useState([]);
@@ -13,7 +15,7 @@ const EditStaff = () => {
 
   const fetchStaffMembers = async () => {
     try {
-      const response = await fetch(`/api/doctors/${doctorId}/staff`);
+      const response = await fetch(`${backendURL}/doctors/${doctorId}/staff`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -35,7 +37,7 @@ const EditStaff = () => {
   // edit handling
   const handleEdit = async (staffId) => {
     try {
-      const response = await fetch(`/api/doctors/${doctorId}/staff/${staffId}`);
+      const response = await fetch(`${backendURL}/doctors/${doctorId}/staff/${staffId}`);
       if (response.ok) {
         const data = await response.json();
         setEditedStaff(data.data.staffMember);
@@ -68,7 +70,7 @@ const EditStaff = () => {
   const handleSaveEdit = async () => {
     try {
       const response = await fetch(
-        `/api/doctors/${doctorId}/staff/${editedStaff._id}`,
+        `${backendURL}/doctors/${doctorId}/staff/${editedStaff._id}`,
         {
           method: "PUT",
           headers: {
@@ -94,7 +96,7 @@ const EditStaff = () => {
   const handleDelete = async (staffId) => {
     try {
       const response = await fetch(
-        `/api/doctors/${doctorId}/staff/${staffId}`,
+        `${backendURL}/doctors/${doctorId}/staff/${staffId}`,
         {
           method: "DELETE",
         }
@@ -122,7 +124,7 @@ const EditStaff = () => {
 
   const handleSaveCreate = async () => {
     try {
-      const response = await fetch(`/api/doctors/${doctorId}/staff`, {
+      const response = await fetch(`${backendURL}/doctors/${doctorId}/staff`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

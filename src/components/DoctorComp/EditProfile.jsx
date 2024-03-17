@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import { backendURL } from "../../config/dev";
+
 
 const  EditProfile = () => {
   const { doctorId } = useParams();
@@ -22,7 +24,7 @@ const  EditProfile = () => {
     // Fetch doctor data using the doctorId
     const fetchDoctorData = async () => {
       try {
-        const response = await fetch(`/api/doctors/${doctorId}`);
+        const response = await fetch(`${backendURL}/doctors/${doctorId}`);
         const data = await response.json();
 
         if (data.success) {
@@ -47,7 +49,7 @@ const  EditProfile = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/api/doctors/doctor-update/${doctorId}`, {
+      const response = await fetch(`${backendURL}/doctors/doctor-update/${doctorId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

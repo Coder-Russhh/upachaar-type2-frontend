@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import doctorImg from "../../assets/PatientImg/doctorImg.jpg";
 import { useNavigate } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const DoctorsList = () => {
   const [doctors, setDoctors] = useState([]);
@@ -10,7 +11,7 @@ const DoctorsList = () => {
   const {patientId} = useParams();
 
   useEffect(() => {
-    axios.get("/api/doctors").then((response) => {
+    axios.get(`${backendURL}/doctors`).then((response) => {
       setDoctors(response.data);
     });
   }, []);

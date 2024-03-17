@@ -7,6 +7,7 @@ import socket from "../../services/socket";
 import {useParams} from "react-router-dom"
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaWalking } from "react-icons/fa";
+import { backendURL } from "../../config/dev";
 
 const PatientManageList = () => {
   const {doctorId} = useParams();
@@ -73,7 +74,7 @@ const PatientManageList = () => {
       }
 
       const formattedDate = selectedDate.toISOString().split("T")[0]; // Format the date
-      const response = await axios.get(`/api/live-appointments/get/doctorslots/${doctorId}`, {
+      const response = await axios.get(`${backendURL}/live-appointments/get/doctorslots/${doctorId}`, {
         params: { date: formattedDate }, // Pass date as a query parameter
       });
       setSlots(response.data);
@@ -86,7 +87,7 @@ const PatientManageList = () => {
   const updateAppointmentTimes = async () => {
     try {
       // Send a PATCH request to the server endpoint
-      const response = await axios.patch("/api/live-appointments/updatetime");
+      const response = await axios.patch(`${backendURL}/live-appointments/updatetime`);
       console.log(response.data);
     } catch (error) {
       console.error("Error updating appointment times:", error);
@@ -101,7 +102,7 @@ const PatientManageList = () => {
       // });
       const startTime = selectedAppointment.appointmentTime;
       const response = await axios.patch(
-        `/api/live-appointments/complete/${selectedAppointment._id}`,
+        `${backendURL}/live-appointments/complete/${selectedAppointment._id}`,
         { startTime }
       );
       // console.log(response.data);

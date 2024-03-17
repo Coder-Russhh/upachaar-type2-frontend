@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const StaffManagement = () => {
   const [staffMembers, setStaffMembers] = useState([]);
@@ -7,7 +8,7 @@ const StaffManagement = () => {
 
   const fetchStaffMembers = async () => {
     try {
-      const response = await fetch(`/api/doctors/${doctorId}/staff`);
+      const response = await fetch(`${backendURL}/doctors/${doctorId}/staff`);
       if (response.ok) {
         const data = await response.json();
         console.log(data.data.staffMembers)

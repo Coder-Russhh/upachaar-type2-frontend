@@ -2,25 +2,25 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Article = () => {
-  const [healthData, setHealthData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [healthData, setHealthData] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=141d43fa8964418b803cb0c1063f6ecd"
-      );
-      setHealthData(response.data.articles);
-      setLoading(false); // Set loading to false once data is fetched
-    } catch (error) {
-      console.error("Error fetching news data:", error);
-      setLoading(false); // Set loading to false in case of error
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=141d43fa8964418b803cb0c1063f6ecd"
+  //     );
+  //     setHealthData(response.data.articles);
+  //     setLoading(false); // Set loading to false once data is fetched
+  //   } catch (error) {
+  //     console.error("Error fetching news data:", error);
+  //     setLoading(false); // Set loading to false in case of error
+  //   }
+  // };
 
   return (
     <div id="healthnews" className="min-h-screen py-4 text-white">
@@ -29,10 +29,10 @@ const Article = () => {
       </h1>
 
       {/* Conditionally render loading indicator */}
-      {loading && (
+      {/* {loading && (
         <div className="flex justify-center items-center mt-8">
-        <div className="loader"></div>
-      </div>
+          <div className="loader"></div>
+        </div>
       )}
 
       {!loading && (
@@ -73,7 +73,18 @@ const Article = () => {
             </a>
           </div>
         </>
-      )}
+      )} */}
+
+      <div className="text-center">
+        <a
+          href="https://timesofindia.indiatimes.com/life-style/health-fitness/health-news"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-color hover:text-[#0A5872] font-bold hover:underline"
+        >
+          Read More...
+        </a>
+      </div>
     </div>
   );
 };

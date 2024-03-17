@@ -6,6 +6,7 @@ import LiveHandlePayment from "./LiveHandlePayment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import socket from "../../services/socket";
+import { backendURL } from "../../config/dev";
 
 const LiveAppointment = () => {
   const { doctorId } = useParams();
@@ -14,6 +15,7 @@ const LiveAppointment = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [error, setError] = useState(null);
+  
 
   const handleFetchSlots = async () => {
     setError(null);
@@ -25,7 +27,7 @@ const LiveAppointment = () => {
       }
 
       const formattedDate = selectedDate.toISOString().split("T")[0]; // Format the date
-      const response = await axios.get(`/api/live-appointments/get/doctorslots/${doctorId}`, {
+      const response = await axios.get(`${backendURL}/live-appointments/get/doctorslots/${doctorId}`, {
         params: { date: formattedDate }, // Pass date as a query parameter
       });
       setAppointments(response.data);

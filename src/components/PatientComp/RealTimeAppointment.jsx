@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StripeCheckout from "react-stripe-checkout";
+import { backendURL } from "../../config/dev";
 
 const RealTimeAppointment = () => {
   const { patientId, doctorId } = useParams();
@@ -24,7 +25,7 @@ const RealTimeAppointment = () => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get(`/api/appointment/${doctorId}`);
+      const response = await axios.get(`${backendURL}/appointment/${doctorId}`);
       setAppointments(response.data.allAppointments);
     } catch (error) {
       console.error("Error fetching appointments:", error);
@@ -34,7 +35,7 @@ const RealTimeAppointment = () => {
   const fetchDoctorAvailability = async () => {
     try {
       const response = await axios.get(
-        `/api/doctor-availabilities/${doctorId}`
+        `${backendURL}/doctor-availabilities/${doctorId}`
       );
       setDoctorAvailability(response.data.doctorAvailability);
       setFee(response.data.doctorAvailability.fee);
@@ -55,7 +56,7 @@ const RealTimeAppointment = () => {
   const handleToken = async (token) => {
     try {
       const response = await axios.post(
-        `/api/appointment/${patientId}/${doctorId}`,
+        `${backendURL}/appointment/${patientId}/${doctorId}`,
         {
           token,
           date: selectedDate,
@@ -81,7 +82,7 @@ const RealTimeAppointment = () => {
 
   const handlePaymentConfirmation = async (action) => {
     try {
-      const response = await axios.post("/api/appointment/handle-payment", {
+      const response = await axios.post(`${backendURL}/appointment/handle-payment`, {
         sessionId,
         action, // 'confirmation' or 'cancelled'
       });

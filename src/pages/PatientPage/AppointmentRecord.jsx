@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PatientHeader from '../../components/PatientComp/PatientHeader';
 import {useParams, useNavigate} from "react-router-dom"
+import { backendURL } from '../../config/dev';
 
 const AppointmentRecord = () => {
   const [slots, setSlots] = useState([]);
@@ -11,7 +12,7 @@ const AppointmentRecord = () => {
   useEffect(() => {
     const fetchSlots = async () => {
       try {
-        const response = await Axios.get(`/api/live-appointments/get-slot/patient/${patientId}`); 
+        const response = await Axios.get(`${backendURL}/live-appointments/get-slot/patient/${patientId}`); 
         setSlots(response.data);
       } catch (error) {
         console.error('Error fetching slots:', error);

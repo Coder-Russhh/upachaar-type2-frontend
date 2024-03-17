@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoReload } from "react-icons/io5";
 import bgDoctor from "../../assets/HomeImg/services/service1r.jpg";
 import Axios from "axios";
+import { backendURL } from "../../config/dev";
 
 const PatientLobby = () => {
   const [patientEmail, setPatientEmail] = useState("");
@@ -16,7 +17,7 @@ const PatientLobby = () => {
   useEffect(() => {
     const fetchPatientEmail = async () => {
       try {
-        const response = await Axios.get(`/api/patients/get/${patientId}`);
+        const response = await Axios.get(`${backendURL}/patients/get/${patientId}`);
         console.log(response.data.data);
         const patientData = response.data.data;
         setPatientEmail(patientData.email);

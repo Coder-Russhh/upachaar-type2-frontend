@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const DoctorSignUp = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const DoctorSignUp = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "/api/doctors/doctor-register",
+        `${backendURL}/doctors/doctor-register`,
         formData,
         {
           headers: {

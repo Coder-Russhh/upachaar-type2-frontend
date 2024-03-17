@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const LiveHandlePayment = ({
   appointmentId,
@@ -29,7 +30,7 @@ const LiveHandlePayment = ({
   const fetchAppointmentData = async () => {
     try {
       const response = await axios.get(
-        `/api/live-appointments/get-slot/${appointmentId}`
+        `${backendURL}/live-appointments/get-slot/${appointmentId}`
       );
       // console.log(response)
       setAppointmentData(response.data);
@@ -41,7 +42,7 @@ const LiveHandlePayment = ({
 
   const fetchPatientData = async () => {
     try {
-      const response = await axios.get(`/api/patients/get/${patientId}`);
+      const response = await axios.get(`${backendURL}/patients/get/${patientId}`);
       // console.log(response)
       setPatientData(response.data.data);
       setLoading(false);
@@ -52,7 +53,7 @@ const LiveHandlePayment = ({
 
   const handleToken = async (token) => {
     try {
-      const response = await axios.post("/api/payment/process-payment", {
+      const response = await axios.post(`${backendURL}/payment/process-payment`, {
         token: token,
         appointmentId: appointmentData ? appointmentData._id : null,
         fee: appointmentData ? appointmentData.fee : null,
@@ -72,7 +73,7 @@ const LiveHandlePayment = ({
         return;
       }
 
-      const response = await axios.post("/api/payment/handle-payment", {
+      const response = await axios.post(`${backendURL}/payment/handle-payment`, {
         sessionId,
         action,
         appointmentId: appointmentData ? appointmentData._id : null,

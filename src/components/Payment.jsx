@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { backendURL } from "../config/dev";
 
 const Payment = () => {
 
@@ -14,7 +15,7 @@ const Payment = () => {
     );
 
     const response = await fetch(
-      "http://localhost:4500/create-payment-intent",
+      `${backendURL}/create-payment-intent`,
       {
         method: "POST",
         headers: {

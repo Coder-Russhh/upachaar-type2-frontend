@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const DoctorSignIn = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const DoctorSignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/doctors/doctor-login", formData, {
+      const response = await axios.post(`${backendURL}/doctors/doctor-login`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { FiUser, FiMenu, FiX } from "react-icons/fi";
 import { IoNotifications } from "react-icons/io5";
 import axios from "axios";
+import { backendURL } from "../../config/dev";
 
 const DoctorHeader = () => {
   const { doctorId } = useParams();
@@ -20,7 +21,7 @@ const DoctorHeader = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`/api/doctors/${doctorId}`);
+        const response = await axios.get(`${backendURL}/doctors/${doctorId}`);
         setDoctorName(response.data.doctor.username);
       } catch (error) {
         console.error("Error fetching patient data:", error);

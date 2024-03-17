@@ -4,6 +4,7 @@ import DoctorHeader from '../../components/DoctorComp/DoctorHeader';
 import { useParams, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { backendURL } from '../../config/dev';
 
 const PatientRecord = () => {
   const [slots, setSlots] = useState([]);
@@ -18,7 +19,7 @@ const PatientRecord = () => {
   const fetchSlots = async (date) => {
     try {
       const formattedDate = date.toISOString().split('T')[0]; // Convert date to ISO format
-      const response = await Axios.get(`/api/live-appointments/get-video-slots/${doctorId}?date=${formattedDate}`);
+      const response = await Axios.get(`${backendURL}/live-appointments/get-video-slots/${doctorId}?date=${formattedDate}`);
       setSlots(response.data);
     } catch (error) {
       console.error('Error fetching slots:', error);

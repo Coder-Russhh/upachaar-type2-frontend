@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { backendURL } from "../../config/dev";
 
 const GetMedicalHistory = () => {
   const { patientId } = useParams();
@@ -12,7 +13,7 @@ const GetMedicalHistory = () => {
     const fetchMedicalHistory = async () => {
       try {
         const response = await axios.get(
-          `/api/medical-history/get/${patientId}`
+          `${backendURL}/medical-history/get/${patientId}`
         );
         setMedicalHistory(response.data.medicalHistory);
       } catch (error) {

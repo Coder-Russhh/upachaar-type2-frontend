@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import PatientHeader from "../../components/PatientComp/PatientHeader";
+import { backendURL } from "../../config/dev";
 
 const HealthMetrics = () => {
   const { patientId } = useParams();
@@ -51,7 +52,7 @@ const HealthMetrics = () => {
     e.preventDefault();
     try {
       // Send the form data to the backend
-      await axios.post(`/api/health-metrics/upload/${patientId}`, formData);
+      await axios.post(`${backendURL}/health-metrics/upload/${patientId}`, formData);
       // Clear the form data
       setFormData({
         bloodPressure: { systolic: "", diastolic: "" },
@@ -77,7 +78,7 @@ const HealthMetrics = () => {
   const fetchHealthMetrics = async () => {
     try {
       // Fetch health metrics data from the backend
-      const response = await axios.get(`/api/health-metrics/get/${patientId}`);
+      const response = await axios.get(`${backendURL}/health-metrics/get/${patientId}`);
       setHealthMetrics(response.data.healthMetrics);
     } catch (error) {
       console.error("Error fetching health metrics:", error);

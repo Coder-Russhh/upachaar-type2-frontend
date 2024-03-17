@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import PatientHeader from "../../components/PatientComp/PatientHeader";
+import { backendURL } from "../../config/dev";
 
 const MedicalHistory = () => {
   const { patientId } = useParams();
@@ -22,7 +23,7 @@ const MedicalHistory = () => {
 
   const fetchMedicalHistory = async () => {
     try {
-      const response = await axios.get(`/api/medical-history/get/${patientId}`);
+      const response = await axios.get(`${backendURL}/medical-history/get/${patientId}`);
       setMedicalHistory(response.data.medicalHistory);
     } catch (error) {
       console.error("Error fetching medical history:", error);
@@ -60,7 +61,7 @@ const MedicalHistory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`/api/medical-history/upload/${patientId}`, formData);
+      await axios.post(`${backendURL}/medical-history/upload/${patientId}`, formData);
       fetchMedicalHistory();
       handleCloseUpload();
     } catch (error) {

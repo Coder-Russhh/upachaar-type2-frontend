@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const UploadMedicalHistory = () => {
     const { patientId } = useParams();
@@ -34,7 +35,7 @@ const UploadMedicalHistory = () => {
     const fetchMedicalHistory = async () => {
       try {
         const response = await axios.get(
-          `/api/medical-history/get/${patientId}`
+          `${backendURL}/medical-history/get/${patientId}`
         );
       } catch (error) {
         console.error("Error fetching medical history:", error);
@@ -44,7 +45,7 @@ const UploadMedicalHistory = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        await axios.post(`/api/medical-history/upload/${patientId}`, formData);
+        await axios.post(`${backendURL}/medical-history/upload/${patientId}`, formData);
         fetchMedicalHistory();
       } catch (error) {
         console.error("Error uploading medical history:", error);

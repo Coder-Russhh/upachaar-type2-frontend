@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 // import doctorStaff from "../../assets/HomeImg/doctor3.jpg";
 import { IoArrowBack } from "react-icons/io5";
+import { backendURL } from "../../config/dev";
 
 const StaffSignIn = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const StaffSignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/staff/staff-login/${staffId}`, {
+      const response = await fetch(`${backendURL}/staff/staff-login/${staffId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import PatientHeader from "./PatientHeader";
 import { useParams } from "react-router-dom";
 import { FaEdit, FaTimes } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { backendURL } from "../../config/dev";
 
 const PatientProfile = () => {
   const [patientData, setPatientData] = useState(null);
@@ -15,7 +16,7 @@ const PatientProfile = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`/api/patients/get/${patientId}`);
+        const response = await axios.get(`${backendURL}/patients/get/${patientId}`);
         setPatientData(response.data.data);
       } catch (error) {
         setError(error.message);

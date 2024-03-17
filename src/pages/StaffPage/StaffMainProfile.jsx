@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import StaffHeader from "../../components/StaffComp/StaffHeader";
+import { backendURL } from "../../config/dev";
 // import girl1 from "../../assets/HomeImg/girl1.jpg";
 
 const StaffMainProfile = () => {
@@ -13,7 +14,7 @@ const StaffMainProfile = () => {
     const fetchStaffData = async () => {
       try {
         const response = await axios.get(
-          `/api/doctors/${doctorId}/staff/${staffId}`
+          `${backendURL}/doctors/${doctorId}/staff/${staffId}`
         );
         console.log(response.data.data);
         setStaffData(response.data.data.staffMember);
