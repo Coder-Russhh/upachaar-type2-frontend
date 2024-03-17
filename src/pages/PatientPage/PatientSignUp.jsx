@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPatient } from "../../redux/patient/patientSlice";
 import { Link } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const PatientSignUp = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ const PatientSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(backendURL)
       const response = await axios.post(
-        "/api/patients/patient-register",
+        `${backendURL}/patients/patient-register`,
         formData,
         {
           headers: {

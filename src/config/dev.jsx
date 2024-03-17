@@ -1,0 +1,1 @@
+export const backendURL = "https://upachaar-prototype2-backend.onrender.com";

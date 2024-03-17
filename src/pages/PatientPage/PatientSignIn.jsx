@@ -4,6 +4,7 @@ import { setPatient } from "../../redux/patient/patientSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { backendURL } from "../../config/dev";
 
 const PatientSignIn = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,9 @@ const PatientSignIn = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      console.log(backendURL)
       const response = await axios.post(
-        "/api/patients/patient-login",
+        `${backendURL}/patients/patient-login`,
         formData,
         {
           headers: {

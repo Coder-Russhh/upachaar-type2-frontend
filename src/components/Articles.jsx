@@ -17,7 +17,7 @@ const Article = () => {
       setHealthData(response.data.articles);
       setLoading(false); // Set loading to false once data is fetched
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching news data:", error);
       setLoading(false); // Set loading to false in case of error
     }
   };
