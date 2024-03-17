@@ -24,7 +24,7 @@ const PatientSignUp = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "/api/patients/patient-register",
+        "https://upachaar-prototype2-backend.onrender.com/patients/patient-register",
         formData,
         {
           headers: {
