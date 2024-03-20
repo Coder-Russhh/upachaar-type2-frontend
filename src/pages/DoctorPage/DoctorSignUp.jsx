@@ -48,14 +48,14 @@ const DoctorSignUp = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col justify-end items-center bg-color  bg-center relative">
+    <div className="w-full flex flex-col justify-end items-center bg-color  bg-center relative">
       <div className="text-white mb-4 px-2">
         <h1 className="text-2xl md:text-2xl w-3/4">
           Best Real Time Management App
         </h1>
         <p className="md:block hidden">Sign in-up to enjoy the best managing experience</p>
       </div>
-      <div className="md:w-1/4 w-full h-[75vh] md:mx-auto text-black px-6 py-2 rounded-t-2xl md:rounded-2xl border-white border-2 bg-white">
+      <div className="md:w-1/4 w-full h-[85vh] md:mx-auto text-black px-6 py-2 rounded-t-2xl md:rounded-2xl border-white border-2 bg-white">
         <h2 className="text-2xl font-bold mb-4">Doctor Sign Up</h2>
         {error && <div>{error}</div>}
         <form onSubmit={handleSubmit}>

@@ -61,7 +61,10 @@ const MedicalHistory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${backendURL}/medical-history/upload/${patientId}`, formData);
+      await axios.post(
+        `${backendURL}/medical-history/upload/${patientId}`,
+        formData
+      );
       fetchMedicalHistory();
       handleCloseUpload();
     } catch (error) {
@@ -265,7 +268,9 @@ const MedicalHistory = () => {
                 Patient ID: {history.patientId}
               </h2> */}
                   <div className="flex items-center gap-4 mb-1">
-                    <h3 className="md:text-2xl text-xl font-bold">Conditions:</h3>
+                    <h3 className="md:text-2xl text-xl font-bold">
+                      Conditions:
+                    </h3>
                     <ul className="hover:underline">
                       {history.conditions.map((condition) => (
                         <li key={condition}>{condition}</li>
@@ -273,7 +278,9 @@ const MedicalHistory = () => {
                     </ul>
                   </div>
                   <div className="flex items-center gap-4 mb-1">
-                    <h3 className="md:text-2xl text-xl font-bold">Allergies:</h3>
+                    <h3 className="md:text-2xl text-xl font-bold">
+                      Allergies:
+                    </h3>
                     <ul className="hover:underline">
                       {history.allergies.map((allergy) => (
                         <li key={allergy}>{allergy}</li>
@@ -281,7 +288,9 @@ const MedicalHistory = () => {
                     </ul>
                   </div>
                   <div className="flex items-center gap-4 mb-1">
-                    <h3 className="md:text-2xl text-xl font-bold">Surgeries:</h3>
+                    <h3 className="md:text-2xl text-xl font-bold">
+                      Surgeries:
+                    </h3>
                     <ul>
                       {history.surgeries.map((surgery) => (
                         <li key={surgery._id}>
@@ -295,7 +304,9 @@ const MedicalHistory = () => {
                     </ul>
                   </div>
                   <div className="flex items-center gap-4 mt-4">
-                    <h3 className="md:text-2xl text-xl font-bold">Medications:</h3>
+                    <h3 className="md:text-2xl text-xl font-bold">
+                      Medications:
+                    </h3>
                     <ul className="">
                       {history.medications.map((medication, index) => (
                         <React.Fragment key={medication._id}>
@@ -324,10 +335,8 @@ const MedicalHistory = () => {
               </div>
             ))}
           </div>
-        ) : (
-          // <p>Loading...</p>
-          null
-        )}
+        ) : // <p>Loading...</p>
+        null}
       </div>
     </>
   );
