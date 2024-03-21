@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {useParams} from "react-router-dom"
+import { backendURL } from '../../config/dev';
 
 const DoctorAvailability = () => {
     const {doctorId} = useParams();
@@ -14,13 +15,11 @@ const DoctorAvailability = () => {
   const handleCreateAvailability = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`/api/doctor-availabilities/${doctorId}`, {
+      const response = await axios.post(`${backendURL}/doctor-availabilities/${doctorId}`, {
         workHours,
         fee,
         nonAvailable,
       });
-      // Assuming backend returns the newly created doctor availability
-      // Update state with the newly created doctor availability
       setWorkHours(response.data.workHours);
       setFee(response.data.fee);
       setNonAvailable(response.data.nonAvailable);
